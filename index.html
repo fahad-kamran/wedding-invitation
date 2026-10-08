@@ -157,6 +157,9 @@
   .count-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold-light),var(--gold),var(--gold-light))}
   .count-box .num{font-family:'Poppins',sans-serif;font-weight:600;font-size:2.3rem;color:var(--gold-deep);line-height:1}
   .count-box .lbl{font-family:'Montserrat',sans-serif;letter-spacing:.2em;font-size:.56rem;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+  .count-box--solo{min-width:200px;padding:34px 40px}
+  .count-box--solo .num{font-size:4.4rem}
+  .count-box--solo .lbl{font-size:.64rem;margin-top:14px}
   .count-note{margin-top:24px;font-style:italic;color:var(--ink-soft);font-size:1.15rem}
 
   /* ========== EVENTS ========== */
@@ -316,21 +319,6 @@
     <p class="host reveal d2">request the honour of your presence</p>
     <p class="lead reveal d3">to grace the auspicious occasion of the wedding &amp; <em>Valima Reception</em> of their beloved son</p>
     <p class="verse reveal d4">“Fahad Kamran, son of Adil Kamran, with the daughter of Zain ul Abideen.”<br/>May their union be blessed with love, barakah &amp; a lifetime of togetherness.</p>
-  </div>
-</section>
-
-<!-- ============ COUNTDOWN ============ -->
-<section id="count">
-  <div class="wrap">
-    <p class="eyebrow reveal">The celebrations begin in</p>
-    <h2 class="section-title reveal d1">Counting Down to our <em>Big Day</em></h2>
-    <div class="count-grid reveal d2">
-      <div class="count-box"><div class="num" id="cd-days">00</div><div class="lbl">Days</div></div>
-      <div class="count-box"><div class="num" id="cd-hours">00</div><div class="lbl">Hours</div></div>
-      <div class="count-box"><div class="num" id="cd-mins">00</div><div class="lbl">Minutes</div></div>
-      <div class="count-box"><div class="num" id="cd-secs">00</div><div class="lbl">Seconds</div></div>
-    </div>
-    <p class="count-note reveal d3" id="cd-note">until the Barat — Friday, 6<sup>th</sup> November 2026</p>
   </div>
 </section>
 
@@ -501,24 +489,6 @@
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:0.14});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  /* ---------- Countdown to Barat: 6 Nov 2026, 9:00 PM PKT (UTC+5 -> 16:00 UTC) ---------- */
-  (function(){
-    const target=new Date(Date.UTC(2026,10,6,16,0,0));
-    const d=document.getElementById('cd-days'),h=document.getElementById('cd-hours'),
-          m=document.getElementById('cd-mins'),s=document.getElementById('cd-secs'),
-          note=document.getElementById('cd-note');
-    const pad=n=>String(n).padStart(2,'0');
-    function tick(){
-      const diff=target-new Date();
-      if(diff<=0){d.textContent=h.textContent=m.textContent=s.textContent='00';
-        note.innerHTML='The celebrations have begun — welcome!';clearInterval(t);return;}
-      d.textContent=pad(Math.floor(diff/864e5));
-      h.textContent=pad(Math.floor(diff%864e5/36e5));
-      m.textContent=pad(Math.floor(diff%36e5/6e4));
-      s.textContent=pad(Math.floor(diff%6e4/1e3));
-    }
-    tick();const t=setInterval(tick,1000);
-  })();
 </script>
 </body>
 </html>
